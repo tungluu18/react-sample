@@ -12,8 +12,8 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage {
-            image.inside("-e MODE=production") {
+        stage('Test') {
+            image.inside("-e MODE=development") {
                 sh "echo testing... $MODE"
             }
         }
