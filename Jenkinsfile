@@ -6,7 +6,6 @@ pipeline {
         }
     }
     stages {
-        def image = docker.build("node")
         stage('Build') {
             steps {
                 sh 'npm install'
@@ -14,8 +13,11 @@ pipeline {
         }
         stage('Test') {
             steps {
-                image.inside("-e MODE=development") {
-                    sh "echo testing... $MODE"
+                scripts {
+                    def image = docker.build("node")
+                    image.inside("-e MODE=development") {
+                        sh "echo testing... $MODE"
+                    }
                 }
             }
         }
