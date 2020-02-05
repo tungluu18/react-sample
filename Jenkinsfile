@@ -13,8 +13,10 @@ pipeline {
             }
         }
         stage('Test') {
-            image.inside("-e MODE=development") {
-                sh "echo testing... $MODE"
+            steps {
+                image.inside("-e MODE=development") {
+                    sh "echo testing... $MODE"
+                }
             }
         }
     }
