@@ -14,7 +14,7 @@ pipeline {
         stage('Test') {
             steps {
                 scripts {
-                    def image = docker.build("node")
+                    def image = docker.build()
                     image.inside("-e MODE=development") {
                         sh "echo testing... $MODE"
                     }
