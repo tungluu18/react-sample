@@ -6,9 +6,15 @@ pipeline {
         }
     }
     stages {
+        def image = docker.build("node")
         stage('Build') {
             steps {
                 sh 'npm install'
+            }
+        }
+        stage {
+            image.inside("-e MODE=production") {
+                sh "echo testing... $MODE"
             }
         }
     }
